@@ -154,6 +154,7 @@ bool check_parentheses(int p,int q){
   else return false;
 }
 int findDominantOp(int p,int q){
+  printf("op,p=%d,q=%d",p,q);
   int br_level=0;
   int min_op=1e9+1;
   int pos=-1;
