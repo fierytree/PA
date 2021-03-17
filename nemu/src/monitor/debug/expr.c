@@ -176,13 +176,13 @@ int findDominantOp(int p,int q){
       else if(op==min_op)pos=curr;
     }
   }
-  printf("pos=%d",pos);
+  printf("pos=%d\n",pos);
   return pos;
 }
 int eval(int p,int q){
   if(p>q){
     printf("error:p>q in eval %d %d\n",p,q);
-   assert(0);
+    assert(0);
   }
   else if(p==q){
     if(tokens[p].type!=TK_NUMBER&&tokens[p].type!=TK_HEX&&tokens[p].type!=TK_REG){
@@ -229,6 +229,7 @@ int eval(int p,int q){
         addr=eval(p+1,q);
         result=vaddr_read(addr,4);
         printf("addr=%u(0x%x)---->value=%d(0x%08x)\n",addr,addr,result,result);
+        return result;
       }
     }
     //printf("pos=%d\n",pos);
