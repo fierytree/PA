@@ -199,7 +199,7 @@ int eval(int p,int q){
           sscanf(tokens[p].str,"%x",&num);break;
         }
         case TK_REG:{
-          printf("%s\n",tokens[p].str);
+          printf("%s,%d\n",tokens[p].str,strcmp(tokens[p].str,"eip"));
           if(strcmp(tokens[p].str,"eip"))return cpu.eip;
           for(int i=0;i<8;i++){
             if(strcmp(tokens[p].str,regsl[i])==0)
