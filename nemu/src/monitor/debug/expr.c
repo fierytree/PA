@@ -255,11 +255,11 @@ uint32_t expr(char *e, bool *success) {
   if(tokens[0].type=='*')tokens[0].type=TK_DEREF;
   for(int i=1;i<nr_token;i++){
     if(tokens[i].type=='-'){
-      if(tokens[i-1].type!=TK_NUMBER||tokens[i-1].type!='(')
+      if(tokens[i-1].type!=TK_NUMBER&&tokens[i-1].type!=TK_HEX&&tokens[i-1].type!='(')
       tokens[i].type=TK_NEGATIVE;
     }
     if(tokens[i].type=='*'){
-      if(tokens[i-1].type!=TK_NUMBER||tokens[i-1].type!='(')
+      if(tokens[i-1].type!=TK_NUMBER&&tokens[i-1].type!=TK_HEX&&tokens[i-1].type!='(')
       tokens[i].type=TK_DEREF;
     }
   }
