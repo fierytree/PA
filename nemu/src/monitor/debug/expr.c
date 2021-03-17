@@ -200,7 +200,7 @@ int eval(int p,int q){
         }
         case TK_REG:{
           printf("%s,%d\n",tokens[p].str,strcmp(tokens[p].str,"eip"));
-          if(strcmp(tokens[p].str,"eip"))return cpu.eip;
+          if(strcmp(tokens[p].str,"eip")==0)return cpu.eip;
           for(int i=0;i<8;i++){
             if(strcmp(tokens[p].str,regsl[i])==0)
             return reg_l(i);
