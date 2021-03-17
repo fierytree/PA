@@ -177,8 +177,7 @@ static int cmd_x(char *args){
   }
   printf("memory:");
   for(int i=0;i<nlen;i+=4){
-    if(i%4==0)printf("\n0x%x:\t0x%02x",addr+i,vaddr_read(addr+i,1));
-    else printf("\t0x%02x",vaddr_read(addr+i,1));
+    printf("\n0x%x:0x%02x",addr+i,vaddr_read(addr+i,4));
   }
   printf("\n");
   return 0;
