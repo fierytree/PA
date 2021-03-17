@@ -164,7 +164,13 @@ static int cmd_info(char *args){
 static int cmd_x(char *args){
   int nlen=0;
   vaddr_t addr;
-  int nRet=sscanf(args,"%d 0x%x",&nlen,&addr);
+  char addr_str[100];bool sc;
+  int nRet=sscanf(args,"%d 0x%s",&nlen,addr_str);
+  addr=expr(addr_str,&sc);
+  if(sc==0){
+    printf("failed to caculate the addr");
+    assert(0);
+  }
   if(nRet<=0){
     printf("args error in cmd_x\n");
     return 0;
