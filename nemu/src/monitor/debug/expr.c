@@ -154,13 +154,13 @@ bool check_parentheses(int p,int q){
   else return false;
 }
 int findDominantOp(int p,int q){
-  //printf("op,p=%d,q=%d\n",p,q);
+  printf("op,p=%d,q=%d\n",p,q);
   int br_level=0;
   int min_op=1e9+1;
   int pos=-1;
   int op=0;
   for(int curr=p+1;curr<q;curr++){
-    //printf("%d\n",tokens[curr].type);
+    printf("%d\n",tokens[curr].type);
     if(tokens[curr].type=='(')br_level+=1;
     if(tokens[curr].type==')')br_level-=1;
     if(br_level==0){
