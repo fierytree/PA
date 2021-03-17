@@ -154,13 +154,13 @@ bool check_parentheses(int p,int q){
   else return false;
 }
 int findDominantOp(int p,int q){
-  printf("op,p=%d,q=%d\n",p,q);
+  //printf("op,p=%d,q=%d\n",p,q);
   int br_level=0;
   int min_op=1e9+1;
   int pos=-1;
   int op=0;
   for(int curr=p+1;curr<q;curr++){
-    printf("%d\n",tokens[curr].type);
+    //printf("%d\n",tokens[curr].type);
     if(tokens[curr].type=='(')br_level+=1;
     if(tokens[curr].type==')')br_level-=1;
     if(br_level==0){
@@ -170,8 +170,8 @@ int findDominantOp(int p,int q){
       else if(tokens[curr].type==TK_AND||tokens[curr].type==TK_OR)op=8;
       else if(tokens[curr].type=='!')op=12;
       else if(tokens[curr].type==TK_EQ||tokens[curr].type==TK_NEQ)op=9;
-      else if(tokens[curr].type==TK_DEREF)op=14;
-      else if(tokens[curr].type==TK_NEGATIVE)op=13;
+      else if(tokens[curr].type==TK_DEREF)op=6;
+      else if(tokens[curr].type==TK_NEGATIVE)op=7;
       if(op<min_op)min_op=op,pos=curr;
       else if(op==min_op)pos=curr;
     }
@@ -230,7 +230,7 @@ int eval(int p,int q){
         printf("addr=%u(0x%x)---->value=%d(0x%08x)\n",addr,addr,result,result);
       }
     }
-    printf("pos=%d\n",pos);
+    //printf("pos=%d\n",pos);
     int val1=eval(p,pos-1);
     int val2=eval(pos+1,q);
     switch(tokens[pos].type){
