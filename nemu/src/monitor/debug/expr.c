@@ -176,6 +176,7 @@ int findDominantOp(int p,int q){
       else if(op==min_op)pos=curr;
     }
   }
+  printf("pos=%d",pos);
   return pos;
 }
 int eval(int p,int q){
