@@ -228,6 +228,7 @@ int eval(int p,int q){
         printf("addr=%u(0x%x)---->value=%d(0x%08x)\n",addr,addr,result,result);
       }
     }
+    printf("pos=%d\n",pos);
     int val1=eval(p,pos-1);
     int val2=eval(pos+1,q);
     switch(tokens[pos].type){
