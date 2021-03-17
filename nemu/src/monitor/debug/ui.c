@@ -37,6 +37,12 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_help(char *args);
+static int cmd_si(char *args);
+static int cmd_info(char *args);
+static int cmd_x(char *args);
+static int cmd_p(char *args);
+static int cmd_w(char *args);
+static int cmd_d(char *args);
 
 static struct {
   char *name;
@@ -46,7 +52,12 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-
+  {"si","args:[N];execute [N] instructions step by step",cmd_si},
+  {"info","args:r/w;print information about registers or watchpoint",cmd_info},
+  {"x","x [N] [EXPR];scan the memory",cmd_x},
+  {"p","expr",cmd_p},
+  {"w","set the watchpoint",cmd_w},
+  {"d","delete the watch point",cmd_d},
   /* TODO: Add more commands */
 
 };
@@ -114,3 +125,64 @@ void ui_mainloop(int is_batch_mode) {
     if (i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
   }
 }
+
+static int cmd_si(char *args){
+  uint64_t N=0;
+  if(args==NULL)N=1;
+  else{
+    int nRet=sscanf(args,"%llu",&N);
+    if(nRet<=0){
+      printf("args error in cmd_si\n");
+      return 0;
+    }
+  }
+  cpu_exec(N);
+  return 0;
+}
+static int cmd_info(char *args){
+  char s;
+  if(args==NULL){
+    printf("args error in cmd_info\n");
+    return 0;
+  }
+  int nRet=sscanf(args,"%c",&s);
+  if(nRet<=0){
+    printf("args error in cmd_info\n");
+    return 0;
+  }
+  if(s=='r'){
+    int i;
+    for(i=0;i<8;i++)printf("%s\t0x%x\n",regsl[i],reg_l(i));
+    printf("eip\t0x%x\n",cpu.eip);
+    for(i=0;i<8;i++)printf("%s\t0x%x\n",regsw[i],reg_w(i));
+    for(i=0;i<8;i++)printf("%s\t0x%x\n",regsb[i],reg_b(i));
+    return 0;
+  }
+  printf("args error in cmd_info\n");
+  return 0;
+}
+static int cmd_x(char *args){
+  int nlen=0;
+  vaddr_t addr;
+  int nRet=sscanf(args,"%d 0x%x",&nlen,&addr);
+  if(nRet<=0){
+    printf("args error in cmd_x\n");
+    return 0;
+  }
+  printf("memory:");
+  for(int i=0;i<nlen;i++){
+    if(i%4==0)printf("\n0x%x:\t0x%02x",addr+i,vaddr_read(addr+i,1));
+    else printf("\t0x%02x",vaddr_read(addr+i,1));
+  }
+  printf("\n");
+  return 0;
+}
+static int cmd_p(char *args){
+  bool success;
+  int res=expr(args,&success);
+  if(success==false)printf("error in expr()\n");
+  else printf("the value of expr is:%d\n", res);
+  return 0;
+}
+static int cmd_w(char *args){return 0;}
+static int cmd_d(char *args){return 0;}
