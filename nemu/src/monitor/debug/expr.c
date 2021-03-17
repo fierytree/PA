@@ -159,7 +159,7 @@ int findDominantOp(int p,int q){
   int min_op=1e9+1;
   int pos=-1;
   int op=0;
-  for(int curr=p+1;curr<q;curr++){
+  for(int curr=p;curr<q;curr++){
     printf("%d\n",tokens[curr].type);
     if(tokens[curr].type=='(')br_level+=1;
     if(tokens[curr].type==')')br_level-=1;
@@ -170,8 +170,8 @@ int findDominantOp(int p,int q){
       else if(tokens[curr].type==TK_AND||tokens[curr].type==TK_OR)op=8;
       else if(tokens[curr].type=='!')op=12;
       else if(tokens[curr].type==TK_EQ||tokens[curr].type==TK_NEQ)op=9;
-      else if(tokens[curr].type==TK_DEREF)op=6;
-      else if(tokens[curr].type==TK_NEGATIVE)op=7;
+      else if(tokens[curr].type==TK_DEREF)op=14;
+      else if(tokens[curr].type==TK_NEGATIVE)op=13;
       if(op<min_op)min_op=op,pos=curr;
       else if(op==min_op)pos=curr;
     }
