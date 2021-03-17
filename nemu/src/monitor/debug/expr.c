@@ -182,7 +182,7 @@ int eval(int p,int q){
    assert(0);
   }
   else if(p==q){
-    if(tokens[p].type!=TK_NUMBER){
+    if(tokens[p].type!=TK_NUMBER&&tokens[p].type!=TK_HEX&&tokens[p].type!=TK_REG){
       printf("error: single op");
       assert(0);
     }
