@@ -235,6 +235,7 @@ int eval(int p,int q){
     }
     printf("pos=%d\n",pos);
     int val1=eval(p,pos-1);
+    printf("val1=%d\n",val1);
     int val2=eval(pos+1,q);
     switch(tokens[pos].type){
       case '+': return val1+val2;
