@@ -115,7 +115,7 @@ static bool make_token(char *e) {
               break;
             }
             case TK_REG:{
-              strncpy(tokens[nr_token].str,substr_start+1,substr_len);
+              strncpy(tokens[nr_token].str,substr_start+1,substr_len-1);
               *(tokens[nr_token].str+substr_len)='\0';
               printf("%s\n",tokens[nr_token].str);
               break;
