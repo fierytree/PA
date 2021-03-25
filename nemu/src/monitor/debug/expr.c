@@ -164,7 +164,7 @@ int findDominantOp(int p,int q){
     if(tokens[curr].type=='(')br_level+=1;
     if(tokens[curr].type==')')br_level-=1;
     if(br_level==0){
-      if(tokens[curr].type==TK_NUMBER)continue;
+      if(tokens[curr].type==TK_NUMBER||tokens[curr].type==TK_HEX||tokens[curr].type==TK_REG)continue;
       else if(tokens[curr].type=='+'||tokens[curr].type=='-')op=10;
       else if(tokens[curr].type=='*'||tokens[curr].type=='/')op=11;
       else if(tokens[curr].type==TK_AND||tokens[curr].type==TK_OR)op=8;
