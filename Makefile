@@ -14,3 +14,8 @@ submit: clean
 	cd .. && tar cj $(shell basename `pwd`) > $(STU_ID).tar.bz2
 
 .PHONY: default clean submit
+
+.count: git checkout pa0
+		find . -name "*.[ch]" |xargs cat|wc -l
+		git checkout master
+		find . -name "*.[ch]" |xargs cat|wc -l
