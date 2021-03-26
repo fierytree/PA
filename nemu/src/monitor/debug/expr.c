@@ -155,13 +155,13 @@ bool check_parentheses(int p,int q){
   else return false;
 }
 int findDominantOp(int p,int q){
-  printf("op,p=%d,q=%d\n",p,q);
+  //printf("op,p=%d,q=%d\n",p,q);
   int br_level=0;
   int min_op=1e9+1;
   int pos=-1;
   int op=0;
   for(int curr=p;curr<q;curr++){
-    printf("%d\n",tokens[curr].type);
+    //printf("%d\n",tokens[curr].type);
     if(tokens[curr].type=='(')br_level+=1;
     if(tokens[curr].type==')')br_level-=1;
     if(br_level==0){
@@ -177,7 +177,7 @@ int findDominantOp(int p,int q){
       else if(op==min_op)pos=curr;
     }
   }
-  printf("pos=%d\n",pos);
+  //printf("pos=%d\n",pos);
   return pos;
 }
 int eval(int p,int q){
@@ -200,8 +200,8 @@ int eval(int p,int q){
           sscanf(tokens[p].str,"%x",&num);break;
         }
         case TK_REG:{
-          printf("%d\n",cpu.eip);
-          printf("%s\n",tokens[p].str);
+          //printf("%d\n",cpu.eip);
+          //printf("%s\n",tokens[p].str);
           if(strcmp(tokens[p].str,"eip")==0)return cpu.eip;
           for(int i=0;i<8;i++){
             if(strcmp(tokens[p].str,regsl[i])==0)
@@ -236,7 +236,7 @@ int eval(int p,int q){
         return result;
       }
     }
-    printf("pos=%d\n",pos);
+    //printf("pos=%d\n",pos);
     int val1=eval(p,pos-1);
     int val2=eval(pos+1,q);
     switch(tokens[pos].type){
