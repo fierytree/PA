@@ -23,5 +23,7 @@
 
 `trap.h`里有一些可以使用的函数，比如`nemu_assert`。
 
+make ARCH=x86-nemu ALL=add run
+
 
 
