@@ -101,9 +101,8 @@ make_EHelper(rol) {
     rtl_shri(&t1,&id_dest->val,id_dest->width*8-1);
     rtl_shli(&t2,&id_dest->val,1);
     rtl_xori(&t2,&id_dest->val,t1);
+    operand_write(id_dest,&t2);
   }
-  rtl_set_CF(&t1);
-  operand_write(id_dest,&t2);
 
   print_asm_template2(rol);
 }
