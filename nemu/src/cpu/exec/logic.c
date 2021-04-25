@@ -105,7 +105,7 @@ make_EHelper(rol) {
   // rtl_set_CF(&t1);
   // operand_write(id_dest,&t2);
   for(t0=0;t0<id_src->val;t0++){
-    t1=id_dest->val&0x7fffffff;
+    t1=id_dest->val&0x80000000;
     t2=(id_dest->val<<1)|t1;
     id_dest->val=t2;
   }
