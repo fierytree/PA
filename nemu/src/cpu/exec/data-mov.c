@@ -59,13 +59,13 @@ make_EHelper(cwtl) {
     //TODO();
     rtl_lr_b(&t0,R_AL);
     rtl_sext(&t0,&t0,1);
-    reg_w(R_AX)=t0;
+    rtl_sr_w(R_AX,&t0);
   }
   else {
     //TODO();
     rtl_lr_w(&t0,R_AX);
     rtl_sext(&t0,&t0,2);
-    reg_l(R_EAX)=t0;
+    rtl_sr_w(R_EAX,&t0);
   }
 
   print_asm(decoding.is_operand_size_16 ? "cbtw" : "cwtl");
