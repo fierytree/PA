@@ -104,6 +104,8 @@ make_EHelper(rol) {
   // }
   // rtl_set_CF(&t1);
   // operand_write(id_dest,&t2);
+  assert(id_src->val==7);
+  assert(id_dest->val==cpu.eax);
   cpu.eax=(cpu.eax<<7)|(cpu.eax>>25);
 
   print_asm_template2(rol);
