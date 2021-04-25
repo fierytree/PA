@@ -53,12 +53,19 @@ make_EHelper(cltd) {
   print_asm(decoding.is_operand_size_16 ? "cwtl" : "cltd");
 }
 
+//error!!!!!!!!!!!!!!!!!!!!!!!!!!!
 make_EHelper(cwtl) {
   if (decoding.is_operand_size_16) {
-    TODO();
+    //TODO();
+    rtl_lr_b(&t0,R_AL);
+    rtl_sext(&t0,&t0,1);
+    operand_write(R_AX, &t0);
   }
   else {
-    TODO();
+    //TODO();
+    rtl_lr_w(&t0,R_AX);
+    rtl_sext(&t0,&t0,2);
+    operand_write(R_EAX, &t0);
   }
 
   print_asm(decoding.is_operand_size_16 ? "cbtw" : "cwtl");
