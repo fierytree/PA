@@ -104,7 +104,7 @@ make_EHelper(rol) {
   // }
   // rtl_set_CF(&t1);
   // operand_write(id_dest,&t2);
-  asm volatile("rol %cl, %eax\n");
+  cpu.eax=(cpu.eax<<7)|(cpu.eax>>25);
 
   print_asm_template2(rol);
 }
