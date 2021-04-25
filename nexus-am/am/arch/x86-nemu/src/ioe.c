@@ -33,5 +33,8 @@ void _draw_sync() {
 }
 
 int _read_key() {
-  return _KEY_NONE;
+  uint32_t code_of_day=0;
+  if(inb(0x64))code_of_day=inl(0x60);
+  //return _KEY_NONE;
+  return code_of_day;
 }
