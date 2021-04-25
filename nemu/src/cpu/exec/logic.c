@@ -97,11 +97,17 @@ make_EHelper(not) {
 //error!!!!!!!!!!!!!!!
 make_EHelper(rol) {
   //TODO();
+  // for(t0=0;t0<id_src->val;t0++){
+  //   rtl_shri(&t1,&id_dest->val,id_dest->width*8-1);
+  //   rtl_shli(&t1,&id_dest->val,1);
+  //   rtl_xori(&t2,&id_dest->val,t1);
+  // }
+  // rtl_set_CF(&t1);
+  // operand_write(id_dest,&t2);
   for(t0=0;t0<id_src->val;t0++){
-    rtl_shri(&t1,&id_dest->val,id_dest->width*8-1);
-    rtl_shli(&t2,&id_dest->val,1);
-    rtl_xori(&t2,&t2,t1);
-    operand_write(id_dest,&t2);
+    t1=id_dest->val&0x7fffffff;
+    t2=(id_dest->val<<1)|t1;
+    id_dest->val=t2;
   }
 
   print_asm_template2(rol);
