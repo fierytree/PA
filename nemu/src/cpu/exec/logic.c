@@ -111,7 +111,8 @@ make_EHelper(rol) {
   t0=(1<<id_src->val)-1;
   t1=id_dest->val<<id_src->val;
   t2=id_dest->val>>(32-id_src->val);
-  id_dest->val=t1|(t2&t0);
+  t0=t1|(t2&t0);
+  operand_write(id_dest,&t0);
 
   print_asm_template2(rol);
 }
