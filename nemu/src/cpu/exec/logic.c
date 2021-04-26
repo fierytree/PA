@@ -108,7 +108,9 @@ make_EHelper(rol) {
   assert(id_dest->val==cpu.eax);
   assert(id_src->val<32);
   t0=(1<<id_src->val)-1;
-  cpu.eax=(cpu.eax<<id_src->val)|((32-(cpu.eax>>id_src->val))&t0);
+  t1=cpu.eax<<id_src->val;
+  t2=cpu.eax>>(32-id_src->val);
+  cpu.eax=t1|(t2&t0);
 
   print_asm_template2(rol);
 }
