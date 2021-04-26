@@ -104,13 +104,14 @@ make_EHelper(rol) {
   // }
   // rtl_set_CF(&t1);
   // operand_write(id_dest,&t2);
-  assert(id_src->val==(cpu.ecx&0xff));
-  assert(id_dest->val==cpu.eax);
+  
+  //assert(id_src->val==(cpu.ecx&0xff));
+  //assert(id_dest->val==cpu.eax);
   assert(id_src->val<32);
   t0=(1<<id_src->val)-1;
-  t1=cpu.eax<<id_src->val;
-  t2=cpu.eax>>(32-id_src->val);
-  cpu.eax=t1|(t2&t0);
+  t1=id_dest->val<<id_src->val;
+  t2=id_dest->val>>(32-id_src->val);
+  id_dest->val=t1|(t2&t0);
 
   print_asm_template2(rol);
 }
