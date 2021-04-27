@@ -251,7 +251,7 @@ make_EHelper(idiv) {
   print_asm_template1(idiv);
 }
 
-static inline void eflags_modify(){
+void eflags_modify(){
   rtl_sub(&t2,&id_dest->val,&id_src->val);
   rtl_update_ZFSF(&t2,id_dest->width);
   rtl_sltu(&t0,&id_dest->val,&id_src->val);
