@@ -3,6 +3,7 @@
 void diff_test_skip_qemu();
 void diff_test_skip_nemu();
 
+extern void raise_intr(uint8_t NO, vaddr_t ret_addr);
 make_EHelper(lidt) {
   //TODO();
 
@@ -38,7 +39,9 @@ make_EHelper(mov_cr2r) {
 }
 
 make_EHelper(int) {
-  TODO();
+  //TODO();
+  uint8_t NO=id_dest->val&0xff;
+  raise_intr(NO,decoding.seq_eip);
 
   print_asm("int %s", id_dest->str);
 

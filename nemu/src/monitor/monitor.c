@@ -109,7 +109,7 @@ static inline void parse_args(int argc, char *argv[]) {
 
 int init_monitor(int argc, char *argv[]) {
   /* Perform some global initialization. */
-
+  cpu.cs=8;
   /* Parse arguments. */
   parse_args(argc, argv);
 
