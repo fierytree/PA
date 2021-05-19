@@ -8,7 +8,7 @@ make_EHelper(lidt) {
   //TODO();
 
   t1=id_dest->val;
-  rtl_lm(&t0,&t1,4);
+  rtl_lm(&t0,&t1,2);
   cpu.idtr.limit=t0;
 
   t1=id_dest->val+2;
