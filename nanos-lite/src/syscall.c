@@ -10,6 +10,7 @@ void sys_exit(int a){
 }
 
 int sys_write(int fd,void* buf,size_t len){
+  panic("fd=%d in sys_write",fd);
   if(fd==1||fd==2){
     char c;
     for(int i=0;i<len;i++){
@@ -29,7 +30,7 @@ _RegSet* do_syscall(_RegSet *r) {
   a[2] = SYSCALL_ARG3(r);
   a[3] = SYSCALL_ARG4(r);
 
-  panic("syscall ID = %d", a[0]);
+  // panic("syscall ID = %d", a[0]);
 
   switch (a[0]) {
     case SYS_none:SYSCALL_ARG1(r)=sys_none();break;
