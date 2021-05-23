@@ -64,12 +64,12 @@ ssize_t fs_read(int fd,void* buf,size_t len){
     Log("arg invalid:fd<3||fd==FD_FB");
     return 0;
   }
+  if(fd==FD_EVENTS)return events_read(buf,len);
   int n=fs_filesz(fd)-get_open_offset(fd);
   if(n>len)n=len;
 
   if(fd==FD_DISPINFO)
     dispinfo_read(buf,get_open_offset(fd),n);
-  else if(fd==FD_EVENTS)return events_read(buf,len);
   else ramdisk_read(buf,disk_offset(fd)+get_open_offset(fd),n);
   set_open_offset(fd,get_open_offset(fd)+n);
   return n;
