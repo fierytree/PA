@@ -19,6 +19,7 @@ make_EHelper(lidt) {
   Log("idtr.limit=0x%x",cpu.idtr.limit);
   Log("idtr.base=0x%x",cpu.idtr.base);
 #endif
+
   print_asm_template1(lidt);
 }
 

@@ -82,7 +82,8 @@ static inline void load_img() {
 static inline void restart() {
   /* Set the initial instruction pointer. */
   cpu.eip = ENTRY_START;
-
+  cpu.cs=8;
+  // cpu.eflags=0x2;
   unsigned int origin=2;
   memcpy(&cpu.eflags,&origin,sizeof(cpu.eflags));
 
@@ -109,7 +110,7 @@ static inline void parse_args(int argc, char *argv[]) {
 
 int init_monitor(int argc, char *argv[]) {
   /* Perform some global initialization. */
-  cpu.cs=8;
+
   /* Parse arguments. */
   parse_args(argc, argv);
 
