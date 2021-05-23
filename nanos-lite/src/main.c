@@ -28,10 +28,10 @@ int main() {
   init_irq();
 #endif
 
-  Log("11111");
+  // Log("11111");
   init_fs();
 
-  Log("22222");
+  // Log("22222");
   uint32_t entry = loader(NULL, NULL);
   ((void (*)(void))entry)();
 
