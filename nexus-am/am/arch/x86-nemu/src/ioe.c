@@ -42,3 +42,8 @@ int _read_key() {
   if(inb(0x64))return inl(0x60);
   return _KEY_NONE;
 }
+
+void getScreen(int* width,int* height){
+  *width=_screen.width;
+  *height=_screen.height;
+}
