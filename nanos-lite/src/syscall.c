@@ -29,6 +29,8 @@ _RegSet* do_syscall(_RegSet *r) {
   a[2] = SYSCALL_ARG3(r);
   a[3] = SYSCALL_ARG4(r);
 
+  panic("syscall ID = %d", a[0]);
+
   switch (a[0]) {
     case SYS_none:SYSCALL_ARG1(r)=sys_none();break;
     case SYS_exit:sys_exit(a[1]);break;
