@@ -5,8 +5,8 @@ int sys_none(){
   return 1;
 }
 
-int sys_exit(){
-  return 1;
+void sys_exit(int a){
+  _halt(a);
 }
 
 _RegSet* do_syscall(_RegSet *r) {
