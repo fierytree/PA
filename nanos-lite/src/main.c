@@ -33,7 +33,7 @@ int main() {
 
   // Log("22222");
   // uint32_t entry = loader(NULL, NULL);
-  uint32_t entry=loader(NULL, "/bin/test");
+  uint32_t entry=loader(NULL, "/bin/hello");
   ((void (*)(void))entry)();
 
   panic("Should not reach here");
