@@ -56,6 +56,7 @@ int fs_open(const char* filename, int flags,int mode){
   return -1;
 }
 
+size_t events_read(void *buf, size_t len);
 void dispinfo_read(void *buf, off_t offset, size_t len);
 ssize_t fs_read(int fd,void* buf,size_t len){
   assert(fd>=0&&fd<NR_FILES);
@@ -65,8 +66,10 @@ ssize_t fs_read(int fd,void* buf,size_t len){
   }
   int n=fs_filesz(fd)-get_open_offset(fd);
   if(n>len)n=len;
+
   if(fd==FD_DISPINFO)
     dispinfo_read(buf,get_open_offset(fd),n);
+  else if(fd==FD_EVENTS)return events_read(buf,len);
   else ramdisk_read(buf,disk_offset(fd)+get_open_offset(fd),n);
   set_open_offset(fd,get_open_offset(fd)+n);
   return n;
