@@ -22,7 +22,7 @@ static Finfo file_table[] __attribute__((used)) = {
 
 #define NR_FILES (sizeof(file_table) / sizeof(file_table[0]))
 
-size_t fs_filesz(int fd){
+size_t size(int fd){
   assert(fd>=0&&fd<NR_FILES);
   return file_table[fd].size;
 }
@@ -65,7 +65,7 @@ ssize_t fs_read(int fd,void* buf,size_t len){
     return 0;
   }
   if(fd==FD_EVENTS)return events_read(buf,len);
-  int n=fs_filesz(fd)-get_open_offset(fd);
+  int n=size(fd)-get_open_offset(fd);
   if(n>len)n=len;
 
   if(fd==FD_DISPINFO)
@@ -87,7 +87,7 @@ ssize_t fs_write(int fd,void* buf,size_t len){
     Log("arg invalid:fd<3||fd==FD_DISPINFO");
     return 0;
   }
-  int n=fs_filesz(fd)-get_open_offset(fd);
+  int n=size(fd)-get_open_offset(fd);
   if(n>len)n=len;
 
   if(fd==FD_FB)fb_write(buf,get_open_offset(fd),n);
@@ -105,7 +105,7 @@ off_t fs_lseek(int fd,off_t offset,int whence){
       set_open_offset(fd,get_open_offset(fd)+offset);
       return get_open_offset(fd);
     case SEEK_END:
-      set_open_offset(fd,fs_filesz(fd)+offset);
+      set_open_offset(fd,size(fd)+offset);
       return get_open_offset(fd);
     default:
       panic("unhandled whence ID=%d",whence);
