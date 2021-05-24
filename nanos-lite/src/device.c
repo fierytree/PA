@@ -37,31 +37,28 @@ void dispinfo_read(void *buf, off_t offset, size_t len) {
 extern void getScreen(int* p_width,int* p_height);
 void fb_write(const void *buf, off_t offset, size_t len) {
   assert(offset%4==0&&len%4==0);
-  int index,screen_x1,screen_y1,screen_y2;
+
   int width=0,height=0;
   getScreen(&width,&height);
-  index=offset/4;
-  screen_x1=index%width;
-  screen_y1=index/width;
+  int x1=offset/4%width;
+  int y1=offset/4/width;
+  int y2=(offset+len)/4/width;
+  assert(y2>=y1);
 
-  index=(offset+len)/4;
-  screen_y2=index/width;
-  assert(screen_y2>=screen_y1);
-
-  if(screen_y1==screen_y2){
-    _draw_rect(buf,screen_x1,screen_y1,len/4,1);
+  if(y1==y2){
+    _draw_rect(buf,x1,y1,len/4,1);
     return;
   }
-  int tempw=width-screen_x1;
-  if(screen_y2-screen_y1==1){
-    _draw_rect(buf,screen_x1,screen_y1,tempw,1);
-    _draw_rect(buf+tempw*4,0,screen_y2,len/4-tempw,1);
+  int w1=width-x1;
+  if(y2-y1==1){
+    _draw_rect(buf,x1,y1,w1,1);
+    _draw_rect(buf+w1*4,0,y2,len/4-w1,1);
     return;
   }
-  _draw_rect(buf,screen_x1,screen_y1,tempw,1);
-  int tempy=screen_y2-screen_y1-1;
-  _draw_rect(buf+tempw*4,0,screen_y1+1,width,tempy);
-  _draw_rect(buf+tempw*4+tempy*width*4,0,screen_y2,len/4-tempw-tempy*width,1);
+  int midy=y2-y1-1;
+  _draw_rect(buf,x1,y1,w1,1);
+  _draw_rect(buf+w1*4,0,y1+1,width,midy);
+  _draw_rect(buf+w1*4+midy*width*4,0,y2,len/4-w1-midy*width,1);
 }
 
 void init_device() {
