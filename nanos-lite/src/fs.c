@@ -23,17 +23,17 @@ static Finfo file_table[] __attribute__((used)) = {
 #define NR_FILES (sizeof(file_table) / sizeof(file_table[0]))
 #define CHECK_FD assert(fd>=0&&fd<NR_FILES); 
 
-inline size_t size(int fd){
+size_t size(int fd){
   CHECK_FD;
   return file_table[fd].size;
 }
 
-inline off_t disk_offset(int fd){
+off_t disk_offset(int fd){
   CHECK_FD;
   return file_table[fd].disk_offset;
 }
 
-inline off_t open_offset(int fd){
+off_t open_offset(int fd){
   CHECK_FD;
   return file_table[fd].open_offset;
 }
