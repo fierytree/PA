@@ -39,9 +39,9 @@ off_t open_offset(int fd){
 }
 
 void set_open_offset(int fd,off_t n){
-  CHECK_FD;
   assert(n>=0);
-  if(n>file_table[fd].size)n=file_table[fd].size;
+  size_t s=size(fd);
+  if(n>s)n=s;
   file_table[fd].open_offset=n;
 }
 

@@ -17,7 +17,7 @@ size_t events_read(void *buf, size_t len) {
     down=true;
   }
   if(key!=_KEY_NONE)
-  sprintf(str,"%s %s\n",down?"kd":"ku",keyname[key]);
+  sprintf(str,"%s %s\n",down?"down":"up",keyname[key]);
   else sprintf(str,"t %d\n",_uptime());
 
   if(strlen(str)<=len){
