@@ -105,7 +105,7 @@ make_EHelper(lea) {
   print_asm_template2(lea);
 }
 
-make_EHelper(move_store_cr){
+make_EHelper(mov_store_cr){
   rtl_store_cr(id_dest->reg,&id_src->val);
   print_asm_template2(mov);
 }
