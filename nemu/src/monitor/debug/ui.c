@@ -156,6 +156,8 @@ static int cmd_info(char *args){
     printf("eip\t0x%x\n",cpu.eip);
     for(i=0;i<8;i++)printf("%s\t0x%x\n",regsw[i],reg_w(i));
     for(i=0;i<8;i++)printf("%s\t0x%x\n",regsb[i],reg_b(i));
+    printf("eflags:CF=%d,ZF=%d,TF=%d,OF=%d\n",cpu.eflags.CF,cpu.eflags.ZF,cpu.eflags.SF,cpu.eflags.IF);
+    printf("CR0=0x%X,CR3=0x%x\n",cpu.CR0,cpu.CR3);
     return 0;
   }
   if(s=='w'){

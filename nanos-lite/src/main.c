@@ -33,8 +33,10 @@ int main() {
 
   // Log("22222");
   // uint32_t entry = loader(NULL, NULL);
-  uint32_t entry=loader(NULL, "/bin/hello");
-  ((void (*)(void))entry)();
+  //uint32_t entry=loader(NULL, "/bin/hello");
+  //((void (*)(void))entry)();
+  extern void load_prog(const char *filename);
+  load_prog("/bin/dummy");
 
   panic("Should not reach here");
 }

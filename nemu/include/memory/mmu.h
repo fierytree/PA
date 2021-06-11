@@ -10,6 +10,11 @@
 #define PAGE_MASK					(4096 - 1)
 #define PT_SIZE						((NR_PTE) * (PAGE_SIZE))
 
+#define PTE_ADDR(pte)   ((uint32_t)(pte) & ~0xfff)
+#define PDX(va)     (((uint32_t)(va) >> 22) & 0x3ff)
+#define PTX(va)     (((uint32_t)(va) >> 12) & 0x3ff)
+#define OFF(va)     ((uint32_t)(va) & 0xfff)
+
 /* the Control Register 0 */
 typedef union CR0 {
   struct {
