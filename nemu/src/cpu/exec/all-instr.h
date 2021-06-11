@@ -62,3 +62,4 @@ make_EHelper(popa);
 make_EHelper(iret);
 
 make_EHelper(mov_store_cr);
+make_EHelper(mov_load_cr);
