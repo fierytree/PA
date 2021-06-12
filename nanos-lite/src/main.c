@@ -36,7 +36,7 @@ int main() {
   //uint32_t entry=loader(NULL, "/bin/hello");
   //((void (*)(void))entry)();
   extern void load_prog(const char *filename);
-  load_prog("/bin/bmptest");
+  load_prog("/bin/pal");
 
   panic("Should not reach here");
 }
