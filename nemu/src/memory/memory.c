@@ -77,8 +77,8 @@ void vaddr_write(vaddr_t addr, int len, uint32_t data) {
     //printf("error:the data pass 2 pages:addr=0x%x,len=%d!\n",addr,len)
     int num1=0x1000-OFF(addr);
     int num2=len-num1;
-    paddr_t paddr1=page_translate(addr,false);
-    paddr_t paddr2=page_translate(addr+num1,false);
+    paddr_t paddr1=page_translate(addr,true);
+    paddr_t paddr2=page_translate(addr+num1,true);
 
     uint32_t low=data&(~0u>>((4-num1)<<3));
     uint32_t high=data>>((4-num2)<<3);
