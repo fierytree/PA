@@ -19,13 +19,13 @@ paddr_t page_translate(vaddr_t addr,bool iswrite){
     CR3* cr3=(CR3*)&cpu.CR3;
 
     PDE* pgdirs=(PDE*)PTE_ADDR(cr3->val);
-    uint32_t t=paddr_read((uint32_t)(pgdirs+PDX(addr)),4);
-    PDE* pde=(PDE*)&t;
+    uint32_t t1=paddr_read((uint32_t)(pgdirs+PDX(addr)),4);
+    PDE* pde=(PDE*)&t1;
     Assert(pde->present,"addr=0x%x",addr);
 
     PTE* ptab=(PTE*)PTE_ADDR(pde->val);
-    t=paddr_read((uint32_t)(ptab+PTX(addr)),4);
-    PTE* pte=(PTE*)&t;
+    uint32_t t2=paddr_read((uint32_t)(ptab+PTX(addr)),4);
+    PTE* pte=(PTE*)&t2;
     Assert(pte->present,"addr=0x%x",addr);
 
     pde->accessed=1;
