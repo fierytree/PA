@@ -10,6 +10,9 @@ static _RegSet* do_event(_Event e, _RegSet* r) {
     case _EVENT_TRAP:
       printf("event:self-trapped\n");
       return schedule(r);
+    case _EVENT_IRQ_TIME:
+      Log("event:URQ_TIME");
+      return schedule(r);
     default: panic("Unhandled event ID = %d", e.event);
   }
 
