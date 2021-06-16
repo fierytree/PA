@@ -51,7 +51,10 @@ extern void ramdisk_write(const void *buf, off_t offset, size_t len);
 int fs_open(const char* filename, int flags,int mode){
   for(int i=0;i<NR_FILES;i++){
     // Log("file name: %s",file_table[i].name);
-    if(strcmp(filename,file_table[i].name)==0)return i;
+    if(strcmp(filename,file_table[i].name)==0){
+      set_open_offset(i,0);
+      return i;
+    }
   }
   panic("this filename does not exist in file table");
   return -1;
