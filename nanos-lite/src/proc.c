@@ -27,5 +27,18 @@ void load_prog(const char *filename) {
 }
 
 _RegSet* schedule(_RegSet *prev) {
-  return NULL;
+  //return NULL;
+  if(current!=NULL)current->tf=prev;
+  static int num=0;
+  static const int frequency=1000;
+  if(current==&pcb[0])num++;
+  else current=&pcb[0];
+
+  if(num==frequency){
+    current=&pcb[1];
+    num=0;
+  }
+  Log("ptr=0x%x\n",(uint32_t)current->as.ptr);
+  _switch(&current->as);
+  return current->tf;
 }
